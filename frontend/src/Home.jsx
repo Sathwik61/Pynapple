@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { uploadFile,GetLinks } from './service/api';
-
+import QRCode from 'qrcode.react';
 const Chatbot = () => {
   const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
@@ -187,25 +187,34 @@ useEffect(()=>{
       >
         Get Links
       </button>
-      <div>
-      {Links.map((file, index) => (
-        <div key={index} className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-lg p-4 mb-4">
-          <div className="text-lg font-medium text-white mb-2">{file.name}</div>
-          <div className="flex items-center mb-2">
-            <span className="text-lg font-medium text-white break-all">
-              http://localhost:8080/api/v1/file/{file._id}
-            </span>
-            <button
-              onClick={() => copyTextToClipboard(`http://localhost:8080/api/v1/file/${file._id}`)}
-              className="ml-2 px-3 py-1 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-full hover:from-green-600 hover:to-teal-600 transition duration-300 shadow-lg text-xs"
-            >
-              Copy
-            </button>
-          </div>
-          <div className="text-sm text-gray-300">{file.path}</div>
+      <div className="grid gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3">
+    {Links.map((file, index) => (
+      <div
+        key={index}
+        className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-lg p-6 mb-4"
+      >
+        <div className="text-lg font-medium text-white mb-2">{file.name}</div>
+        <div className="flex items-center mb-2">
+          <span className="text-lg font-medium text-white break-all">
+            http://localhost:8080/api/v1/file/{file._id}
+          </span>
         </div>
-        ))}
+        <div className="flex items-center justify-between mb-4">
+          <button
+            onClick={() => copyTextToClipboard(`http://localhost:8080/api/v1/file/${file._id}`)}
+            className="ml-4 px-3 py-1 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-full hover:from-green-600 hover:to-teal-600 transition duration-300 shadow-lg text-xs"
+          >
+            Copy
+          </button>
+          <div className="p-2 bg-white rounded-lg">
+            <QRCode value={`http://localhost:8080/api/v1/file/${file._id}`} size={128} />
+          </div>
+        </div>
+        {/* <div className="text-sm text-gray-300">{file.path}</div> */}
       </div>
+    ))}
+  </div>
+
     </div>
   </div>
 </div>
