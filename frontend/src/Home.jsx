@@ -167,6 +167,9 @@ useEffect(()=>{
             >
               {result}
             </a>
+            <div className="py-4 bg-white rounded-lg flex justify-center ">
+            <QRCode value={result} size={128} />
+          </div>
             <button
               className="mt-2 px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-full hover:from-green-600 hover:to-teal-600 transition duration-300 shadow-lg"
               onClick={copyToClipboard}
