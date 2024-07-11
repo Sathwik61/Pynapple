@@ -10,6 +10,14 @@ export const uploadFile = async (data) => {
         console.log('Error while calling the API ', error.message);
     }
 }
+export const tuploadFile = async (data) => {
+    try {
+        const response = await axios.post(`${API_URI}/tupload`, data);
+        return response.data;
+    } catch (error) {
+        console.log('Error while calling the API ', error.message);
+    }
+}
 
 export const GetLinks= async (data)=>{
     try {
