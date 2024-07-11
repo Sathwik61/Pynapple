@@ -1,11 +1,13 @@
 const File = require("../models/file");
 
+let count=0;
 const Links=async(req,res)=>{
     const uid=req.body.data
 try{
     // console.log(req.body)
     const files = await File.find({user:uid});
-    console.log(files)
+    count++;
+    console.log("called getlinks",count)
            
     return res.status(200).json({'links':files})
 }

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { uploadFile,GetLinks } from './service/api';
+import NavBar from "./Components/NavBar";
 import QRCode from 'qrcode.react';
 const Chatbot = () => {
   const navigate = useNavigate();
@@ -12,60 +13,14 @@ const Chatbot = () => {
   if (expiryDate === "null") {
     navigate("/signup");
   }
-  // console.log(expiryDate);
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+ 
 useEffect(()=>{
   let a=localStorage.getItem('persist:root')
   
 },[])
 
-  const getLinks= async()=>{
-    const uid=localStorage.getItem('uid')
-    const data={data:uid};
-    try {
-      const response = await GetLinks(data);
-      setLinks(response.links);
-      console.log(response.links);
-  } catch (error) {
-      console.log('Error while calling the API', error.message);
-  }
-  }
+ 
 
-  const handleMessageSubmit = (event) => {
-    event.preventDefault();
-    if (inputText.trim() === "") return;
-
-    const date = new Date();
-    const hour = date.getHours();
-    const minute = date.getMinutes();
-    const str_time = `${hour}:${minute}`;
-
-    // Add user message to the chat
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { text: inputText, sender: "user", time: str_time },
-    ]);
-
-    // Clear input field
-    setInputText("");
-
-    // Simulate chatbot reply after a short delay
-    setTimeout(() => {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: "Hello, I'm Chatbot", sender: "chatbot", time: str_time },
-      ]);
-    }, 500);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("jwtToken");
-    localStorage.removeItem("expiryDate");
-    localStorage.removeItem("uid");
-    window.location.href = "/";
-  };
 
   // file sharing
   const [file, setFile] = useState('');
@@ -120,25 +75,7 @@ useEffect(()=>{
   };
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900">
-  <div className="h-20 bg-gradient-to-r from-blue-800 to-purple-700 flex items-center justify-between px-4 shadow-lg">
-    <div className="flex items-center">
-      <img
-        src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png"
-        alt="Chatbot"
-        className="rounded-full h-8 w-8 mr-2 border border-blue-300"
-      />
-      <div>
-        <span className="text-white font-bold text-sm">File Sharing</span>
-        <p className="text-xs text-white">Welcome to our File Sharing</p>
-      </div>
-    </div>
-    <button
-      onClick={handleLogout}
-      className="text-white text-xs font-medium border border-white rounded-full px-4 py-1 hover:bg-white hover:text-blue-800 focus:outline-none transition duration-300"
-    >
-      Logout
-    </button>
-  </div>
+      <NavBar/>
   <div className="flex items-center justify-center flex-grow">
     <div className="max-w-md w-full bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-lg p-6 border border-blue-300">
       {url && <img src={url} className="w-full h-48 object-cover rounded-lg shadow-lg" alt="uploaded file" />}
@@ -181,7 +118,7 @@ useEffect(()=>{
       </div>
     </div>
   </div>
-  <div className="text-white m-16 flex flex-col">
+  {/* <div className="text-white m-16 flex flex-col">
     <h2 className="text-2xl font-bold mb-4">Links</h2>
     <div className="flex flex-col">
       <button
@@ -213,13 +150,13 @@ useEffect(()=>{
             <QRCode value={`http://localhost:8080/api/v1/file/${file._id}`} size={128} />
           </div>
         </div>
-        {/* <div className="text-sm text-gray-300">{file.path}</div> */}
+       
       </div>
     ))}
   </div>
 
     </div>
-  </div>
+  </div> */}
 </div>
 
   );
