@@ -3,6 +3,7 @@ const { registerUser, loginUser, getUsers} = require('../userController');
 const { userRegisterValidate, userLoginValidate } = require('../utils/userValiadation');
 const { ensureAuthenticated } = require('../utils/auth');
 const {Links}=require('../utils/getlinks.js')
+const getIp =require('../utils/getIp')
 const routes = express.Router();
 const {tuploadImage, tgetImage,tdownloadFile}= require('../userController/a.js')
 
@@ -22,7 +23,7 @@ const { uploadImage, getImage,downloadFile } =require('../userController/image-c
 
 routes.post('/upload', upload.single('file'), uploadImage);
 routes.get('/file/:fileId', getImage);
-routes.get('/download/:fileId',downloadFile );
+routes.get('/download/:fileId',getIp,downloadFile );
 
 
 routes.post('/getlinks',Links)
