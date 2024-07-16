@@ -1,70 +1,41 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import LandingNavbar from './LandingNavbar';
+import { Link } from 'react-router-dom';
+import LandingFooter from './LandingFooter';
+
 function Landing() {
+  const [fadeIn, setFadeIn] = useState(false);
+  useEffect(() => {
+    // Trigger fade-in effect after component mounts
+    setFadeIn(true);
+  }, []);
+
   return (
-    
-<div class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div className="bg-gray-100 font-sans leading-normal tracking-normal">
+      <LandingNavbar />
 
-<header class="bg-white border-b md:flex md:items-center md:justify-between p-4 pb-0 shadow-lg md:pb-4">
-    <div class="flex items-center justify-between mb-4 md:mb-0">
-        <h1 class="leading-none text-2xl text-gray-900">Your File Sharing System</h1>
-    </div>
-    <nav>
-        <ul class="list-reset md:flex md:items-center">
-            <li><a href="#" class="block md:inline-block mt-4 md:mt-0 mr-6 text-gray-900 hover:text-blue-500">Home</a></li>
-            <li><a href="#" class="block md:inline-block mt-4 md:mt-0 mr-6 text-gray-900 hover:text-blue-500">Features</a></li>
-            <li><a href="#" class="block md:inline-block mt-4 md:mt-0 text-gray-900 hover:text-blue-500">About</a></li>
-        </ul>
-    </nav>
-</header>
-
-<section class="bg-white border-b py-8">
-    <div class="container mx-auto px-2 md:flex md:items-center">
-        <div class="w-full md:w-1/2 py-6 text-center">
-            {/* <img class="w-full md:w-4/5 mx-auto" src="hero-image.jpg" alt="Hero Image"> */}
-        </div>
-        <div class="w-full md:w-1/2 py-6 text-center">
-            <h2 class="text-3xl leading-tight mb-4">Securely Share and Receive Files</h2>
-            <p class="text-gray-700 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis euismod
-                convallis aliquam. Curabitur ac ante ultrices, mattis lorem ut, bibendum turpis.</p>
-            <div class="mt-8">
-                <Link to="/login" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4">Login</Link>
-                <Link to="/signup" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Sign Up</Link>
+      <section className="bg-yellow-300 border-b py-20">
+        <div className="container mx-auto px-2 md:flex md:items-center">
+          <div className={`w-full md:w-2/5 py-10 text-center ${fadeIn ? 'opacity-100' : 'opacity-0'}`} style={{ transition: 'opacity 1s ease-in-out' }}>
+            {/* Placeholder for your image */}
+            <img className="w-full md:max-w-xs mx-auto" src="/src/assets/FedEx.png" alt="Feature Image" />
+          </div>
+          <div className={`w-full md:w-3/5 py-6 text-center ${fadeIn ? 'opacity-100' : 'opacity-0'}`} style={{ transition: 'opacity 1s ease-in-out', transitionDelay: '0.5s' }}>
+            <h2 className="text-3xl text-orange-900 leading-tight font-bold mb-4">Securely Share and Receive Files</h2>
+            <p className="text-gray-900 mb-4">
+              "Pynapple Share is a versatile web application designed for seamless file sharing. It offers a range of innovative features to enhance user experience, including the ability to transfer files effortlessly via QR code or link. Users can opt for a one-time transfer mode, ensuring secure and controlled sharing. The application also keeps a detailed log of previously sent files for easy reference. With its emphasis on speed and user-friendliness, Pynapple Share simplifies file sharing, making it an ideal choice for both personal and professional use."
+            </p>
+            <div className="mt-8">
+              <Link to="/login" className="bg-orange-600 hover:bg-orange-900 text-white font-bold py-2 px-4 rounded mr-4">Login</Link>
+              <Link to="/signup" className="bg-orange-600 hover:bg-orange-900 text-white font-bold py-2 px-4 rounded mr-4">Sign Up</Link>
             </div>
+          </div>
         </div>
-    </div>
-</section>
+      </section>
 
-<footer class="bg-white border-t border-gray-400 shadow">
-    <div class="container mx-auto flex py-8">
-        <div class="w-full mx-auto flex flex-wrap">
-            <div class="flex w-full lg:w-1/2 ">
-                <div class="px-8">
-                    <h3 class="font-bold text-gray-900">About Us</h3>
-                    <p class="py-4 text-gray-600 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel nulla sed dolor
-                        tincidunt
-                        congue.
-                    </p>
-                </div>
-            </div>
-            <div class="flex w-full lg:w-1/2 lg:justify-end lg:text-right">
-                <div class="px-8">
-                    <h3 class="font-bold text-gray-900">Social Media</h3>
-                    <ul class="list-reset items-center text-sm pt-3">
-                        <li>
-                            <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1"
-                                href="#">Add social media links here</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+      <LandingFooter />
     </div>
-</footer>
-
-</div>
-  )
+  );
 }
 
-export default Landing
+export default Landing;
