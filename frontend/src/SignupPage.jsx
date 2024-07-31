@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import s1 from "./assets/react.svg";
+import s1 from "/src/assets/FedEx.png";
 import "./login.css";
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
@@ -106,7 +106,7 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-400 to-indigo-700 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-yellow-300 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-500 hover:scale-105">
         <div className="px-6 py-8">
           <div className="flex justify-center">
@@ -167,7 +167,7 @@ const SignupPage = () => {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-700 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300"
               >
                 Sign up
               </button>
@@ -202,7 +202,7 @@ const SignupPage = () => {
 
           <div className="flex items-center justify-between mt-4">
             <div className="text-sm my-6">
-              <Link to="/" className="font-medium text-indigo-600 hover:text-indigo-500">
+              <Link to="/login" className="font-medium text-orange-700 hover:text-orange-500">
                 Already have an account? | Login
               </Link>
             </div>
