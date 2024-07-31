@@ -39,7 +39,7 @@ const tuploadImage = async (request, response) => {
 const tgetImage = async (request, response) => {
     try {
         const token = request.params.fileId;
-        console.log("Came inside", token)
+        // console.log("Came inside", token)
         if (token in activeTokens && activeTokens[token].expiry > Date.now()) {
             const fileObj = activeTokens[token].fileObj;
 

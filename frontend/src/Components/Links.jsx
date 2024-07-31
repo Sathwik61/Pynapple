@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { GetLinks } from '../service/api';
 import NavBar from './NavBar';
 import QRCode from 'qrcode.react';
+// import { link } from '../../../backend/routes';
 
 function Links() {
   const [links, setLinks] = useState([]);
@@ -15,7 +16,8 @@ function Links() {
     try {
       const response = await GetLinks(data);
       setLinks(response.links);
-      console.log(response.links[0].downloadCount)
+      // console.log(response.links)
+      // console.log(response.links[0].downloadCount)
       setFilteredLinks(response.links); // Initialize filtered links with all links
     } catch (error) {
       console.log('Error while calling the API', error.message);
@@ -65,7 +67,7 @@ function Links() {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full max-w-md px-4 py-2 mb-4 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-600"
         />
-
+        {links.length?<>
         <div className="grid gap-8 p-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full max-w-7xl">
           {filteredLinks.map((file, index) => (
             <div
@@ -101,6 +103,8 @@ function Links() {
             </div>
           ))}
         </div>
+        </>:<>
+        <h1 className='text-black animate-tic'>No links </h1></>}
       </div>
     </div>
   );
