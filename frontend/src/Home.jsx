@@ -7,7 +7,7 @@ import { useDropzone } from 'react-dropzone';
 
 const Chatbot = () => {
   const navigate = useNavigate();
-  const [sendOnce, setSendOnce] = useState(false);
+  const [sendOnce, setSendOnce] = useState(true);
   const [file, setFile] = useState(null);
   const [result, setResult] = useState('');
 
@@ -151,6 +151,12 @@ const Chatbot = () => {
                       />
                       <span className="text-lg text-orange-800">Send Once</span>
                     </label>
+                  </div>
+                  <div>
+                    {
+                      sendOnce?<p className="text-lg text-orange-800">Link is valid till 5 mins</p>:null
+                    }
+                    
                   </div>
                 </>
               )}
